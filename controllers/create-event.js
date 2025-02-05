@@ -1,10 +1,11 @@
 const eventModel = require('../models/event-model')
 
 const CreateEvent = async (req, res) => {
-    const {eventPoster, eventName, eventDetails, eventTiming, eventVenue, eventDate} = await req.body;
+    const {eventName, eventDetails, eventTiming, eventVenue, eventDate} = await req.body;
+    const eventPosterUrl = `${req.protocol}://${req.get('host')}/posters/${req.file.filename}`;
     try{
         const NewEvent = await eventModel.create({
-        eventPoster,
+        eventPoster : eventPosterUrl,
         eventName,
         eventDetails,
         eventTiming,

@@ -5,20 +5,21 @@ const { GetAllEvents, GetEventById } = require('../controllers/fetch-event')
 const DeleteEvent = require('../controllers/delete-event')
 const UpdateEvent = require('../controllers/update-event');
 const multer = require('multer')
+const path = require('path');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './posters')
     },
     filename: function (req, file, cb) {
-        
-        cb(null, Date.now() + 'poster' + Math.round(Math.random() * 1E9) + file.originalname)
+        const uniqueFilename = `${Date.now()}-${Math.round(Math.random() * 1E9)}${path.extname(file.originalname)}`;
+        cb(null, uniqueFilename);
     }
 })
 
 const upload = multer({ storage });
 
-router.post('/event/create', upload.single('poster'), createEvent)
+router.post('/event/create', upload.single('eventPoster'), createEvent)
 router.get('/event/fetch', GetAllEvents)
 router.get('/event/:id', GetEventById)
 router.delete('/event/delete/:id', DeleteEvent)

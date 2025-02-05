@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/posters', express.static('posters'));
 
 mongoose.connect(MONGO_URI)
     .then(()=>{
