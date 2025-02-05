@@ -1,8 +1,6 @@
-# This is a simple boilerplate code for the backend of GFG Student Chapter
+# Backend for GFG Student Chapter 2025-2026
 
----
-`note to remove .env in future pushes`
----
+
 
 ### Steps to install the express app
 
